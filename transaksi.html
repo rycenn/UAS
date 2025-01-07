@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RICEN PEDIA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h2>Formulir Peminjaman Online</h2>
+    <form id="loanForm" onsubmit="return validateLoanForm()">
+        <input type="text" id="fullName" placeholder="Nama Lengkap" required>
+        <input type="text" id="idNumber" placeholder="Nomor KTP" required>
+        <input type="text" id="address" placeholder="Alamat" required>
+        <input type="tel" id="phoneNumber" placeholder="Nomor Telepon" required>
+        <input type="number" id="loanAmount" placeholder="Jumlah Pinjaman" required min="1">
+        <input type="text" id="loanPurpose" placeholder="Tujuan Pinjaman" required>
+        <input type="number" id="income" placeholder="Penghasilan Bulanan" required min="1">
+        <input type="number" id="loanTerm" placeholder="Jangka Waktu Pinjaman (bulan)" required min="1">
+        <input type="submit" value="Ajukan Pinjaman">
+    </form>
+    <div id="loanMessage" class="success-message"></div>
+</div>
+<script>
+    function validateLoanForm() {
+        const fullName = document.getElementById('fullName').value;
+        const idNumber = document.getElementById('idNumber').value;
+        const address = document.getElementById('address').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        const loanAmount = document.getElementById('loanAmount').value;
+        const loanPurpose = document.getElementById('loanPurpose').value;
+        const income = document.getElementById('income').value;
+        const loanTerm = document.getElementById('loanTerm').value;
+        const messageDiv = document.getElementById('loanMessage');
+
+        messageDiv.textContent = '';
+
+        if (fullName === '' || idNumber === '' || address === '' || phoneNumber === '' || loanAmount === '' || loanPurpose === '' || income === '' || loanTerm === '') {
+            messageDiv.textContent = 'Semua field harus diisi.';
+            return false; 
+        }
+
+        messageDiv.textContent = 'Pengajuan pinjaman berhasil! Terima kasih, ' + fullName + '.';
+
+        setTimeout(() => {
+            window.location.href = 'loding.html';
+        }, 1000);
+
+        return false;
+    }
+</script>
+</body>
+</html>

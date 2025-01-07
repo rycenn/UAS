@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RICEN PEDIA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h2>Sign Up</h2>
+    <form id="signUpForm" onsubmit="return validateSignUp()">
+        <input type="text" id="signupUsername" placeholder="Username" required>
+        <input type="password" id="signupPassword" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <input type="email" id="signupEmail" placeholder="Email" required>
+        <input type="text" id="signupFullName" placeholder="Full Name" required>
+        <input type="number" id="signupAge" placeholder="Age" required min="1">
+        <input type="text" id="signupAddress" placeholder="Address" required>
+        <input type="text" id="signupCity" placeholder="City" required>
+        <input type="submit" value="Sign Up">
+    </form>
+    <p>Already Registered? <a href="signin.html" style="color: white;">Log In!</a></p>
+    <div id="signUpMessage" class="success-message"></div>
+</div>
+<script>
+    function validateSignUp() {
+        const username = document.getElementById('signupUsername').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const email = document.getElementById('signupEmail').value;
+        const fullName = document.getElementById('signupFullName').value;
+        const age = document.getElementById('signupAge').value;
+        const address = document.getElementById('signupAddress').value;
+        const city = document.getElementById('signupCity').value;
+        const messageDiv = document.getElementById('signUpMessage');
+
+        messageDiv.textContent = '';
+
+        if (username === '' || password === '' || confirmPassword === '' || email === '' || fullName === '' || age === '' || address === '' || city === '') {
+            messageDiv.textContent = 'All fields are required.';
+            return false; 
+        }
+
+        if (password !== confirmPassword) {
+            messageDiv.textContent = 'Passwords do not match.';
+            return false;
+        }
+
+        if (age < 1) {
+            messageDiv.textContent = 'Age must be a positive number.';
+            return false;
+        }
+
+        messageDiv.textContent = 'Sign up successful! Welcome, ' + fullName + '.';
+
+        setTimeout(() => {
+            window.location.href = 'signin.html'; // 
+        }, 1000); 
+
+        return false;
+    }
+</script>
+</body>
+</html>
